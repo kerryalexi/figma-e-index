@@ -1,0 +1,33 @@
+/*ESTILO DEL PIE DE PAGINA*/
+
+.footer {
+    /*FONDO Y COLORES*/
+    background: #163f2d;
+    color: #e5f0e8;
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 34px 0;
+}
+
+.footer-inner {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    align-items: center;
+}
+
+.footer p {
+    /*FONDO Y COLORES*/
+    color: #bcd0c2;
+    /*PARAMETROS DEL ELEMENTO*/
+    margin: 4px 0;
+}
+
+.footer-links {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    gap: 17px;
+    flex-wrap: wrap;
+    /*ESTILO DEL TEXTO*/
+    font-size: .88rem;
+}

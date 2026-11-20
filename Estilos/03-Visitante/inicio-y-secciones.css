@@ -1,0 +1,214 @@
+/*ESTILO DE INICIO Y SECCIONES DEL VISITANTE*/
+
+.hero {
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 62px 0 55px;
+    /*FONDO Y COLORES*/
+    background: radial-gradient(circle at 85% 15%,#e1efd9,transparent 32%),linear-gradient(130deg,#f8faf5,#edf5e9);
+}
+
+.hero-grid {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    grid-template-columns: 1.04fr .96fr;
+    gap: 46px;
+    align-items: center;
+}
+
+.eyebrow {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    /*FONDO Y COLORES*/
+    background: #e5f1e2;
+    /*ESTILO DEL BORDE*/
+    border-radius: 999px;
+    /*FONDO Y COLORES*/
+    color: var(--forest);
+    /*ESTILO DEL TEXTO*/
+    font-weight: 700;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+.hero h1 {
+    /*ESTILO DEL TEXTO*/
+    font-family: Manrope,sans-serif;
+    font-size: clamp(2.4rem,5vw,4.3rem);
+    line-height: 1.08;
+    letter-spacing: -.045em;
+    /*PARAMETROS DEL ELEMENTO*/
+    margin: 18px 0;
+    /*FONDO Y COLORES*/
+    color: var(--ink);
+}
+
+.hero h1 span {
+    /*FONDO Y COLORES*/
+    color: var(--green);
+}
+
+.hero p {
+    /*ESTILO DEL TEXTO*/
+    font-size: 1.08rem;
+    /*FONDO Y COLORES*/
+    color: #5d6d62;
+    /*PARAMETROS DEL ELEMENTO*/
+    max-width: 600px;
+}
+
+.hero-art {
+    /*ESTILO DEL BORDE*/
+    border-radius: 30px;
+    /*PARAMETROS DEL ELEMENTO*/
+    overflow: hidden;
+    /*ESTILO DEL BORDE*/
+    box-shadow: var(--shadow);
+}
+
+.hero-actions {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    /*AJUSTES VISUALES*/
+    margin-top: 25px;
+}
+
+.stats-strip {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 14px;
+    /*AJUSTES VISUALES*/
+    margin-top: 32px;
+}
+
+.stat-mini {
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 15px 17px;
+    /*ESTILO DEL BORDE*/
+    border: 1px solid var(--line);
+    /*FONDO Y COLORES*/
+    background: rgba(255,255,255,.75);
+    /*ESTILO DEL BORDE*/
+    border-radius: 15px;
+}
+
+.stat-mini strong {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: block;
+    /*ESTILO DEL TEXTO*/
+    font-family: Manrope;
+    font-size: 1.35rem;
+    /*FONDO Y COLORES*/
+    color: var(--forest);
+}
+
+.stat-mini small {
+    /*FONDO Y COLORES*/
+    color: var(--muted);
+}
+
+.section {
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 62px 0;
+}
+
+.section.soft {
+    /*FONDO Y COLORES*/
+    background: #edf5eb;
+}
+
+.section-head {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+    /*AJUSTES VISUALES*/
+    margin-bottom: 26px;
+}
+
+.section-head h2,.page-title {
+    /*ESTILO DEL TEXTO*/
+    font-family: Manrope,sans-serif;
+    font-size: clamp(1.7rem,3vw,2.4rem);
+    line-height: 1.18;
+    /*PARAMETROS DEL ELEMENTO*/
+    margin: 8px 0;
+    /*FONDO Y COLORES*/
+    color: var(--ink);
+    /*ESTILO DEL TEXTO*/
+    letter-spacing: -.03em;
+}
+
+.section-head p {
+    /*FONDO Y COLORES*/
+    color: var(--muted);
+    /*PARAMETROS DEL ELEMENTO*/
+    max-width: 580px;
+    margin: 0;
+}
+
+.kicker {
+    /*FONDO Y COLORES*/
+    color: var(--green);
+    /*ESTILO DEL TEXTO*/
+    font-weight: 800;
+    font-size: .78rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.grid {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    gap: 18px;
+}
+
+.grid.three {
+    /*PARAMETROS DEL ELEMENTO*/
+    grid-template-columns: repeat(3,1fr);
+}
+
+.grid.two {
+    /*PARAMETROS DEL ELEMENTO*/
+    grid-template-columns: repeat(2,1fr);
+}
+
+.card-link {
+    /*ESTILO DEL TEXTO*/
+    font-weight: 800;
+    /*FONDO Y COLORES*/
+    color: var(--forest);
+}
+
+.page-hero {
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 40px 0 28px;
+    /*FONDO Y COLORES*/
+    background: linear-gradient(120deg,#eff6ec,#f8faf6);
+}
+
+.page-hero .page-title {
+    /*AJUSTES VISUALES*/
+    margin-top: 7px;
+}
+
+.page-hero p {
+    /*FONDO Y COLORES*/
+    color: var(--muted);
+    /*PARAMETROS DEL ELEMENTO*/
+    max-width: 740px;
+    /*AJUSTES VISUALES*/
+    margin-bottom: 0;
+}
+
+.page-content {
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 34px 0 70px;
+}

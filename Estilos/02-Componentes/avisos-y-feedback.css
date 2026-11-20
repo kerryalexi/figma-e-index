@@ -1,0 +1,72 @@
+/*MENSAJES, AVISOS Y NOTIFICACIONES*/
+
+.notice {
+    /*ESTILO DEL BORDE*/
+    border: 1px solid #e8dcae;
+    /*FONDO Y COLORES*/
+    background: #fff9e6;
+    color: #65521a;
+    /*ESTILO DEL BORDE*/
+    border-radius: 14px;
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 14px 16px;
+    /*ESTILO DEL TEXTO*/
+    font-size: .9rem;
+}
+
+.notice.info {
+    /*ESTILO DEL BORDE*/
+    border-color: #d5e6d2;
+    /*FONDO Y COLORES*/
+    background: #f0f7ee;
+    color: #385b3e;
+}
+
+.empty {
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 25px;
+    /*ESTILO DEL TEXTO*/
+    text-align: center;
+    /*FONDO Y COLORES*/
+    color: var(--muted);
+}
+
+.empty strong {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: block;
+    /*FONDO Y COLORES*/
+    color: var(--ink);
+    /*AJUSTES VISUALES*/
+    margin-bottom: 5px;
+}
+
+.toast {
+    /*PARAMETROS DEL ELEMENTO*/
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 50;
+    /*FONDO Y COLORES*/
+    background: #173f2c;
+    color: white;
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 14px 18px;
+    /*ESTILO DEL BORDE*/
+    border-radius: 13px;
+    box-shadow: var(--shadow);
+    /*PARAMETROS DEL ELEMENTO*/
+    max-width: min(420px,calc(100% - 44px));
+    /*FONDO Y COLORES*/
+    opacity: 0;
+    /*INTERACCION Y EFECTOS*/
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: .25s;
+}
+
+.toast.show {
+    /*FONDO Y COLORES*/
+    opacity: 1;
+    /*INTERACCION Y EFECTOS*/
+    transform: translateY(0);
+}

@@ -1,0 +1,72 @@
+/*ESTILO Y ESTADOS DE LOS BOTONES*/
+
+.btn {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    /*ESTILO DEL BORDE*/
+    border: 0;
+    border-radius: 12px;
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 12px 18px;
+    /*FONDO Y COLORES*/
+    background: var(--forest);
+    color: #fff;
+    /*ESTILO DEL TEXTO*/
+    font-weight: 700;
+    /*INTERACCION Y EFECTOS*/
+    transition: .2s;
+    /*ESTILO DEL BORDE*/
+    box-shadow: 0 5px 12px rgba(23,107,69,.12);
+}
+
+.btn:hover {
+    /*FONDO Y COLORES*/
+    background: #105638;
+    /*INTERACCION Y EFECTOS*/
+    transform: translateY(-1px);
+}
+
+.btn.secondary {
+    /*FONDO Y COLORES*/
+    background: var(--mist);
+    color: var(--forest);
+    /*ESTILO DEL BORDE*/
+    box-shadow: none;
+}
+
+.btn.outline {
+    /*FONDO Y COLORES*/
+    background: transparent;
+    /*ESTILO DEL BORDE*/
+    border: 1px solid var(--line);
+    /*FONDO Y COLORES*/
+    color: var(--forest);
+    /*ESTILO DEL BORDE*/
+    box-shadow: none;
+}
+
+.btn.small {
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 9px 13px;
+    /*ESTILO DEL TEXTO*/
+    font-size: .86rem;
+}
+
+.btn.danger {
+    /*FONDO Y COLORES*/
+    background: #fff0ef;
+    color: #a23b35;
+    /*ESTILO DEL BORDE*/
+    box-shadow: none;
+}
+
+.btn.gold {
+    /*FONDO Y COLORES*/
+    background: var(--yellow);
+    color: #3d3210;
+    /*ESTILO DEL BORDE*/
+    box-shadow: none;
+}

@@ -1,0 +1,76 @@
+/*ESTILO DE TARJETAS, ICONOS Y ETIQUETAS*/
+
+.card {
+    /*FONDO Y COLORES*/
+    background: #fff;
+    /*ESTILO DEL BORDE*/
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 23px;
+    /*ESTILO DEL BORDE*/
+    box-shadow: 0 5px 20px rgba(28,67,43,.035);
+}
+
+.card h3 {
+    /*ESTILO DEL TEXTO*/
+    font-family: Manrope;
+    /*PARAMETROS DEL ELEMENTO*/
+    margin: 12px 0 7px;
+    /*ESTILO DEL TEXTO*/
+    font-size: 1.15rem;
+}
+
+.card p {
+    /*FONDO Y COLORES*/
+    color: var(--muted);
+    /*PARAMETROS DEL ELEMENTO*/
+    margin: 0 0 14px;
+}
+
+.iconbox {
+    /*PARAMETROS DEL ELEMENTO*/
+    width: 48px;
+    height: 48px;
+    display: grid;
+    /*AJUSTES VISUALES*/
+    place-items: center;
+    /*ESTILO DEL BORDE*/
+    border-radius: 14px;
+    /*FONDO Y COLORES*/
+    background: var(--mist);
+    /*ESTILO DEL TEXTO*/
+    font-size: 1.4rem;
+}
+
+.tag {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: inline-flex;
+    padding: 5px 9px;
+    /*ESTILO DEL BORDE*/
+    border-radius: 99px;
+    /*FONDO Y COLORES*/
+    background: #e9f3e8;
+    color: var(--forest);
+    /*ESTILO DEL TEXTO*/
+    font-size: .75rem;
+    font-weight: 700;
+}
+
+.tag.gold {
+    /*FONDO Y COLORES*/
+    background: #fff5d5;
+    color: #806313;
+}
+
+.tag.blue {
+    /*FONDO Y COLORES*/
+    background: #eaf2f8;
+    color: #315b76;
+}
+
+.tag.gray {
+    /*FONDO Y COLORES*/
+    background: #f0f2ef;
+    color: #56635a;
+}

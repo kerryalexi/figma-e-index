@@ -1,0 +1,17 @@
+/*ARCHIVO PRINCIPAL: IMPORTA LOS ESTILOS EN ORDEN DE USO*/
+
+@import url("00-Base/colores.css");
+@import url("00-Base/general.css");
+@import url("01-Navegacion/barra-superior.css");
+@import url("01-Navegacion/pie-pagina.css");
+@import url("02-Componentes/botones.css");
+@import url("02-Componentes/tarjetas-etiquetas.css");
+@import url("02-Componentes/formularios.css");
+@import url("02-Componentes/tablas.css");
+@import url("02-Componentes/avisos-y-feedback.css");
+@import url("03-Visitante/inicio-y-secciones.css");
+@import url("03-Visitante/busqueda-y-acopios.css");
+@import url("04-Acceso/inicio-sesion-y-registro.css");
+@import url("05-Ciudadano/perfil-y-estadisticas.css");
+@import url("06-Administrador/panel-administrativo.css");
+@import url("07-Adaptable/responsive.css");

@@ -1,0 +1,58 @@
+/*PARAMETROS GENERALES DE LA PANTALLA Y ELEMENTOS BASE*/
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+
+* {
+    /*AJUSTES VISUALES*/
+    box-sizing: border-box;
+}
+
+html {
+    /*AJUSTES VISUALES*/
+    scroll-behavior: smooth;
+}
+
+body {
+    /*PARAMETROS DEL ELEMENTO*/
+    margin: 0;
+    /*FONDO Y COLORES*/
+    background: var(--paper);
+    color: var(--ink);
+    /*ESTILO DEL TEXTO*/
+    font-family: "DM Sans",Arial,sans-serif;
+    line-height: 1.55;
+}
+
+a {
+    /*FONDO Y COLORES*/
+    color: inherit;
+    /*ESTILO DEL TEXTO*/
+    text-decoration: none;
+}
+
+button,input,select,textarea {
+    /*ESTILO DEL TEXTO*/
+    font: inherit;
+}
+
+button,a,select {
+    /*INTERACCION Y EFECTOS*/
+    cursor: pointer;
+}
+
+img {
+    /*PARAMETROS DEL ELEMENTO*/
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    /*PARAMETROS DEL ELEMENTO*/
+    width: min(1160px,calc(100% - 40px));
+    margin: auto;
+}
+
+.muted {
+    /*FONDO Y COLORES*/
+    color: var(--muted);
+}

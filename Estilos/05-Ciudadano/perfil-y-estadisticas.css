@@ -1,0 +1,226 @@
+/*ESTILO DEL ESPACIO DEL CIUDADANO Y SU PERFIL*/
+
+.page-layout {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 25px;
+}
+
+.side-card {
+    /*FONDO Y COLORES*/
+    background: white;
+    /*ESTILO DEL BORDE*/
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 17px;
+    height: max-content;
+    position: sticky;
+    top: 100px;
+}
+
+.side-card h3 {
+    /*ESTILO DEL TEXTO*/
+    font-family: Manrope;
+    /*PARAMETROS DEL ELEMENTO*/
+    margin: 5px 9px 12px;
+}
+
+.side-links {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    gap: 5px;
+}
+
+.side-links a {
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 11px 12px;
+    /*ESTILO DEL BORDE*/
+    border-radius: 11px;
+    /*FONDO Y COLORES*/
+    color: #59675d;
+    /*ESTILO DEL TEXTO*/
+    font-weight: 600;
+    font-size: .91rem;
+}
+
+.side-links a:hover,.side-links a.active {
+    /*FONDO Y COLORES*/
+    background: var(--mist);
+    color: var(--forest);
+}
+
+.content-stack {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    gap: 20px;
+}
+
+.metric-grid {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 13px;
+}
+
+.metric {
+    /*FONDO Y COLORES*/
+    background: #fff;
+    /*ESTILO DEL BORDE*/
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 17px;
+}
+
+.metric .metric-value {
+    /*ESTILO DEL TEXTO*/
+    font-family: Manrope;
+    font-size: 1.8rem;
+    /*FONDO Y COLORES*/
+    color: var(--forest);
+    /*ESTILO DEL TEXTO*/
+    font-weight: 800;
+}
+
+.metric small {
+    /*FONDO Y COLORES*/
+    color: var(--muted);
+}
+
+.metric .metric-icon {
+    /*ESTILO DEL TEXTO*/
+    font-size: 1.25rem;
+}
+
+.two-col {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 18px;
+}
+
+.progress {
+    /*PARAMETROS DEL ELEMENTO*/
+    height: 10px;
+    /*FONDO Y COLORES*/
+    background: #e9eee7;
+    /*ESTILO DEL BORDE*/
+    border-radius: 99px;
+    /*PARAMETROS DEL ELEMENTO*/
+    overflow: hidden;
+}
+
+.progress span {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: block;
+    height: 100%;
+    /*FONDO Y COLORES*/
+    background: var(--green);
+    /*ESTILO DEL BORDE*/
+    border-radius: 99px;
+}
+
+.profile-header {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.avatar {
+    /*PARAMETROS DEL ELEMENTO*/
+    width: 66px;
+    height: 66px;
+    display: grid;
+    /*AJUSTES VISUALES*/
+    place-items: center;
+    /*ESTILO DEL BORDE*/
+    border-radius: 50%;
+    /*FONDO Y COLORES*/
+    background: var(--mist);
+    color: var(--forest);
+    /*ESTILO DEL TEXTO*/
+    font-family: Manrope;
+    font-weight: 800;
+    font-size: 1.45rem;
+}
+
+.badge-state {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    /*ESTILO DEL BORDE*/
+    border-radius: 999px;
+    /*ESTILO DEL TEXTO*/
+    font-size: .76rem;
+    font-weight: 800;
+    /*FONDO Y COLORES*/
+    background: #fff2d3;
+    color: #826313;
+}
+
+.badge-state.ok {
+    /*FONDO Y COLORES*/
+    background: #e8f5e7;
+    color: #247149;
+}
+
+.material-card {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    gap: 13px;
+    align-items: center;
+}
+
+.material-swatch {
+    /*PARAMETROS DEL ELEMENTO*/
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    /*ESTILO DEL BORDE*/
+    border-radius: 13px;
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    /*AJUSTES VISUALES*/
+    place-items: center;
+    /*FONDO Y COLORES*/
+    background: #e9f3e8;
+    /*ESTILO DEL TEXTO*/
+    font-size: 1.25rem;
+}
+
+.campaign-card {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.campaign-meta {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    gap: 13px;
+    flex-wrap: wrap;
+    /*FONDO Y COLORES*/
+    color: var(--muted);
+    /*ESTILO DEL TEXTO*/
+    font-size: .82rem;
+}
+
+.citizen-page .side-card {
+    /*ESTILO DEL BORDE*/
+    border-top: 3px solid var(--green);
+}
+
+.citizen-page .metric {
+    /*ESTILO DEL BORDE*/
+    border-top: 3px solid #a7d66d;
+}
+
+.citizen-page .profile-header {
+    /*AJUSTES VISUALES*/
+    padding-bottom: 4px;
+}

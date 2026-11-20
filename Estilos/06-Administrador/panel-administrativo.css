@@ -1,0 +1,26 @@
+/*ESTILO DEL PANEL ADMINISTRATIVO*/
+
+.admin-page .side-card {
+    /*ESTILO DEL BORDE*/
+    border-top: 3px solid var(--forest);
+}
+
+.admin-page .side-links a.active {
+    /*ESTILO DEL TEXTO*/
+    font-weight: 800;
+}
+
+.admin-page .metric {
+    /*ESTILO DEL BORDE*/
+    border-left: 3px solid var(--green);
+}
+
+.admin-page .table-wrap {
+    /*ESTILO DEL BORDE*/
+    box-shadow: 0 5px 18px rgba(28, 67, 43, .04);
+}
+
+.admin-page .content-stack > .card {
+    /*ESTILO DEL BORDE*/
+    border-radius: 18px;
+}

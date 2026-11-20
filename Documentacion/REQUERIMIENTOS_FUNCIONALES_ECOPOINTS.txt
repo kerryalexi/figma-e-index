@@ -1,0 +1,377 @@
+ECPOINTS – REQUERIMIENTOS FUNCIONALES DEL JAVASCRIPT
+Caso de Estudio 2: Reciclaje y participación ambiental
+
+1. ALCANCE Y BASE DEL ANÁLISIS
+Este documento se elaboró leyendo los archivos JavaScript de la versión organizada de EcoPoints. Describe las funcionalidades que el código implementa actualmente. No incorpora como existentes funciones que solo podrían desarrollarse en el futuro.
+
+La aplicación es un prototipo frontend. Los datos se guardan en localStorage del navegador. Por tanto, no existe una base de datos central, sincronización entre dispositivos ni autenticación protegida por un servidor. Para probar todas las áreas desde la misma instalación, deben abrirse bajo el mismo origen (por ejemplo, mediante Live Server).
+
+2. ESTRUCTURA DE LOS MÓDULOS JAVASCRIPT
+
+2.1 Scripts/00-Configuracion/configuracion-y-contexto.js
+Funciones y responsabilidades:
+- Lee del HTML el rol (visitor, citizen o admin), la página actual y la ruta raíz.
+- Define la clave administrativa fija EcoPoints2026 para el prototipo.
+- Declara los identificadores de almacenamiento local: usuarios, sesión, registros, campañas, puntos de acopio, inscripciones y organización.
+- Proporciona selectores de elementos HTML, lectura/escritura JSON, escape de texto, formato numérico y construcción de rutas.
+
+Problema: las distintas páginas necesitan conocer qué área se está mostrando y dónde encontrar sus archivos y datos.
+Requerimiento: el sistema debe identificar el rol y la página actual y proporcionar rutas y acceso uniforme a los datos locales.
+Necesidad: evitar duplicar configuraciones en cada HTML y permitir que una misma lógica se use en visitante, ciudadano y administrador.
+
+2.2 Scripts/01-Datos/almacenamiento-sesiones-y-calculos.js
+Funciones: seed(), current(), session(), materialPoints(), approvedRecords(), citizenTotals() y authGuard().
+
+Problema: los usuarios, campañas, puntos y registros necesitan conservarse entre cambios de página; además, las páginas privadas no deben mostrarse a visitantes sin sesión.
+Requerimiento: inicializar colecciones de demostración cuando no existan, guardar y recuperar datos, consultar la sesión, calcular puntos y comprobar el rol antes de mostrar áreas privadas.
+Necesidad: mantener continuidad de la información del prototipo y diferenciar el acceso de ciudadanos y administradores.
+
+Detalle funcional:
+- seed(): crea campañas y puntos demostrativos, y colecciones vacías si aún no existen.
+- current(): recupera el perfil asociado a la sesión.
+- session(): devuelve la sesión actual.
+- materialPoints(): aplica la regla ilustrativa de 10 puntos por kilogramo y 1 punto por unidad.
+- approvedRecords(): considera únicamente registros con estado Aprobado.
+- citizenTotals(): obtiene puntos, kg y número de actividades aprobadas.
+- authGuard(): devuelve al inicio de sesión si un ciudadano o administrador intenta entrar sin el rol esperado.
+
+2.3 Scripts/02-Utilidades/mensajes-seguridad-y-exportacion.js
+Funciones: toast(), hashPassword() y csvDownload().
+
+Problema: el usuario necesita recibir confirmaciones y errores; además, la organización necesita descargar información registrada para revisarla fuera del prototipo.
+Requerimiento: mostrar mensajes temporales, procesar la contraseña introducida y generar archivos CSV de los datos seleccionados.
+Necesidad: comunicar el resultado de las acciones y facilitar el análisis básico de usuarios y reciclajes.
+
+Detalle y límite:
+- toast(): presenta mensajes durante unos segundos en el elemento #toast.
+- hashPassword(): usa SHA-256 mediante Web Crypto cuando está disponible. El mecanismo alternativo base64 solo codifica el texto y no debe considerarse protección de contraseña.
+- csvDownload(): genera descargas CSV. Los reportes pueden incluir datos personales y deben manejarse con autorización.
+
+2.4 Scripts/03-Navegacion/barras-y-estructura.js
+Funciones: visitorNav(), accountNav(), footer(), pageHero() y setLayout().
+
+Problema: cada tipo de usuario necesita moverse entre pantallas sin perder orientación y las páginas deben mantener una estructura visual coherente.
+Requerimiento: mostrar una barra pública, una barra privada según el rol, un pie de página, encabezados de sección y un contenedor para el contenido.
+Necesidad: organizar la navegación y reutilizar elementos comunes en todas las páginas.
+
+2.5 Scripts/04-Componentes/tarjetas-y-catalogos.js
+Funciones y datos: sampleCenters(), centerCards(), campaignCards(), materialData y materialsHTML().
+
+Problema: la información de centros, campañas y materiales debe presentarse de forma legible y repetible en distintas pantallas.
+Requerimiento: recuperar el directorio local, crear tarjetas de centros y campañas, y generar una guía con cuatro grupos: Plástico, Papel y cartón, Vidrio y Aluminio.
+Necesidad: facilitar la consulta de información sobre clasificación, lugares de entrega y actividades.
+
+Límite: las direcciones, horarios y campañas iniciales se identifican expresamente como datos de demostración y deben reemplazarse por información verificada.
+
+2.6 Scripts/05-Visitante/pantallas-publicas-y-acceso.js
+Funciones: renderWelcome(), renderVisitor(), renderLogin() y renderRegister().
+
+Problema: una persona visitante necesita conocer la plataforma y consultar información sin crear necesariamente una cuenta; quien desea participar necesita una vía de acceso y registro.
+Requerimiento: mostrar bienvenida, inicio público, guía de reciclaje, directorio de acopio, campañas, información institucional, inicio de sesión y registro ciudadano.
+Necesidad: explicar el propósito de EcoPoints y permitir que los interesados se conviertan en usuarios registrados.
+
+Detalle funcional:
+- Bienvenida e inicio: presentan la propuesta y enlaces hacia guía, acopios, campañas y registro.
+- Guía: muestra recomendaciones generales para plástico, papel/cartón, vidrio y aluminio; incluye búsqueda y filtros manejados por eventos.
+- Puntos de acopio: muestra el directorio, datos disponibles y advertencia de que los lugares son demostrativos.
+- Campañas: muestra actividades y solicita cuenta ciudadana para inscribirse.
+- Información: explica el propósito de EcoPoints y sus ejes de educación, acceso y continuidad.
+- Inicio de sesión: presenta acceso ciudadano (correo y contraseña) y administrativo (nombre, correo, organización y clave fija).
+- Registro: recoge nombre completo, correo, celular, ciudad, zona/barrio, contraseña, confirmación, material de interés y aceptación de condiciones.
+
+2.7 Scripts/06-Ciudadano/panel-y-perfil-ciudadano.js
+Funciones: shellCitizen() y renderCitizen().
+
+Problema: el ciudadano necesita organizar sus actividades, conocer el estado de sus registros y ver los avances asociados a su cuenta.
+Requerimiento: ofrecer páginas de inicio, registrar reciclaje, puntos de acopio, mis puntos, campañas, impacto, historial y perfil.
+Necesidad: acompañar al ciudadano antes, durante y después de entregar materiales y ayudarle a mantener la participación.
+
+Detalle funcional por pantalla:
+A. Inicio ciudadano
+- Presenta kg aprobados, puntos acumulados, número de registros aprobados e inscripciones a campañas.
+- Enlaza al registro de reciclaje y al perfil.
+- Muestra campañas disponibles.
+
+B. Registrar reciclaje
+- Solicita tipo de material, cantidad, unidad, fecha, punto de acopio y observación opcional.
+- Guarda el registro con estado Pendiente.
+- Informa que los puntos se calculan después de la validación administrativa.
+
+C. Puntos de acopio
+- Muestra puntos guardados en el directorio local y advierte sobre datos demostrativos.
+
+D. Mis puntos
+- Presenta puntos disponibles, actividades aprobadas, registros pendientes y un nivel ilustrativo.
+- Explica la regla de puntos configurada en el prototipo.
+
+E. Campañas
+- Muestra campañas disponibles y permite inscribirse mediante el control de participación.
+
+F. Mi impacto
+- Resume kg aprobados y cantidades por material y unidad.
+- Muestra una meta visual ilustrativa de 20 kg.
+- No calcula equivalencias científicas de CO2 ni otros impactos ambientales.
+
+G. Historial
+- Muestra fecha, material, cantidad, punto, estado y puntos asociados a cada registro.
+
+H. Mi perfil
+- Muestra y permite modificar nombre, correo, celular, ciudad, zona/barrio y material de interés.
+- Incluye un formulario separado para cambiar contraseña, solicitando contraseña actual y nueva.
+- Al cambiar el correo se actualiza la referencia del correo en los registros e inscripciones del ciudadano.
+
+2.8 Scripts/07-Administrador/panel-administrativo.js
+Funciones: shellAdmin() y renderAdmin().
+
+Problema: la organización necesita saber quién participa, administrar campañas y puntos de entrega, revisar las entregas declaradas y consultar resultados.
+Requerimiento: ofrecer dashboard, usuarios, campañas, puntos de acopio, registros de reciclaje, estadísticas, reportes y configuración de la organización.
+Necesidad: comprender la participación y gestionar los elementos principales de la plataforma desde un área administrativa.
+
+Detalle funcional por pantalla:
+A. Dashboard
+- Resume cantidad de usuarios, campañas, puntos de acopio y registros.
+- Muestra movimientos recientes y accesos a secciones de gestión.
+
+B. Usuarios
+- Lista nombre, correo, celular, ciudad, zona y fecha de registro de las cuentas guardadas localmente.
+
+C. Campañas
+- Permite crear campañas con título, fecha, lugar, materiales/temática y descripción.
+- Permite eliminar campañas creadas en el prototipo.
+
+D. Puntos de acopio
+- Permite agregar nombre, ciudad, zona, horario, dirección y materiales recibidos.
+- Permite eliminar puntos añadidos.
+
+E. Registros de reciclaje
+- Lista las entregas enviadas por ciudadanos.
+- Permite aprobar o rechazar registros pendientes.
+- La aprobación es la condición para que los registros sumen puntos.
+
+F. Estadísticas
+- Calcula usuarios, kg aprobados, cantidad de registros aprobados y pendientes.
+- Agrupa kilogramos aprobados por material.
+
+G. Reportes
+- Permite descargar CSV de registros de reciclaje y CSV de usuarios.
+
+H. Configuración
+- Permite guardar nombre, correo y ciudad de la organización.
+- Muestra que la clave administrativa es fija en el prototipo y no se modifica en esta sección.
+
+2.9 Scripts/08-Eventos/acciones-y-formularios.js
+Responsabilidad: centraliza eventos de clic, escritura y envío de formularios.
+
+Problema: los controles visibles deben ejecutar acciones y modificar la información almacenada.
+Requerimiento: responder a pestañas de acceso, menú móvil, cierre de sesión, inscripción a campañas, aprobación/rechazo, eliminación, exportación, búsqueda, filtros y envío de formularios.
+Necesidad: conectar las pantallas con las operaciones de la aplicación.
+
+Eventos de clic:
+- Cambiar entre pestaña de acceso ciudadano y administrador.
+- Abrir/cerrar menú móvil.
+- Cerrar sesión y regresar al inicio de sesión.
+- Inscribir a un ciudadano en una campaña sin duplicar la inscripción.
+- Aprobar o rechazar registros de reciclaje pendientes.
+- Eliminar campañas y puntos de acopio que fueron creados por el administrador.
+- Descargar CSV de usuarios o registros.
+- Filtrar materiales por categoría.
+
+Eventos de escritura:
+- Filtrar tarjetas de materiales mientras se escribe en el buscador de la guía.
+- Filtrar tarjetas de puntos de acopio mientras se escribe en el buscador correspondiente.
+
+Eventos de envío de formularios:
+- Inicio de sesión ciudadano: compara correo y hash de contraseña con una cuenta existente.
+- Registro ciudadano: valida coincidencia y longitud de contraseñas, evita correos duplicados y crea la cuenta; luego inicia sesión automáticamente.
+- Acceso administrador: compara la clave ingresada con EcoPoints2026 y guarda nombre, correo y organización en la sesión y configuración.
+- Registro de reciclaje: guarda material, cantidad, unidad, fecha, punto y nota con estado Pendiente.
+- Perfil: valida que el correo no pertenezca a otra cuenta, actualiza los datos del ciudadano y relaciona sus registros e inscripciones con el nuevo correo.
+- Cambio de contraseña: comprueba la contraseña actual y exige al menos ocho caracteres en la nueva contraseña.
+- Nueva campaña: guarda los datos de la campaña.
+- Nuevo punto de acopio: guarda los datos del establecimiento.
+- Organización: actualiza nombre, correo y ciudad.
+
+2.10 Scripts/main.js
+Función: start().
+
+Problema: cada página debe inicializar los datos y mostrar el contenido correcto sin que el usuario tenga que ejecutar acciones manuales.
+Requerimiento: iniciar datos demostrativos, comprobar el rol, construir las barras y el pie de página, seleccionar el renderizador según el rol y cargar el contenido.
+Necesidad: disponer de un punto de entrada único para todas las páginas HTML.
+
+3. REQUERIMIENTOS FUNCIONALES CONSOLIDADOS
+
+RF-01 – Inicialización de datos
+Problema: el prototipo necesita colecciones iniciales para mostrar y registrar información.
+Requerimiento: crear colecciones locales vacías y cargar campañas y centros demostrativos solo cuando no existan.
+Necesidad: permitir probar las pantallas desde la primera ejecución.
+
+RF-02 – Navegación pública
+Problema: un visitante necesita encontrar la información ambiental principal.
+Requerimiento: acceder a inicio, guía, puntos de acopio, campañas e información sin autenticación.
+Necesidad: informar y orientar antes de solicitar una cuenta.
+
+RF-03 – Registro ciudadano
+Problema: el ciudadano no puede guardar actividad sin una identidad de cuenta.
+Requerimiento: registrar nombre, correo, celular, ciudad, zona, material de interés y contraseña; confirmar contraseña y aceptación de condiciones.
+Necesidad: crear un perfil identificable y asociado a sus actividades.
+
+RF-04 – Inicio de sesión ciudadano
+Problema: las cuentas existentes necesitan acceso a su historial y perfil.
+Requerimiento: autenticar mediante correo y contraseña procesada por la función hash del prototipo.
+Necesidad: recuperar el espacio personal.
+
+RF-05 – Acceso administrativo
+Problema: la organización necesita entrar a las herramientas de gestión.
+Requerimiento: solicitar nombre, correo, organización y clave fija EcoPoints2026.
+Necesidad: identificar al responsable durante la demostración.
+
+RF-06 – Control de acceso por rol
+Problema: las pantallas privadas no deben mostrarse a visitantes ni a roles incorrectos.
+Requerimiento: verificar la sesión ciudadana o administrativa antes de renderizar el área privada.
+Necesidad: separar las experiencias por tipo de usuario dentro del prototipo.
+
+RF-07 – Consulta educativa de materiales
+Problema: existe desconocimiento sobre cómo clasificar residuos.
+Requerimiento: mostrar recomendaciones para plástico, papel/cartón, vidrio y aluminio, con búsqueda y filtros.
+Necesidad: ayudar a distinguir y preparar materiales antes de entregarlos.
+
+RF-08 – Directorio de puntos de acopio
+Problema: el usuario puede desconocer dónde entregar sus materiales.
+Requerimiento: consultar puntos y sus datos de dirección, horario, zona y materiales admitidos; permitir al administrador añadir o eliminar puntos.
+Necesidad: centralizar la información de entrega.
+
+RF-09 – Registro de reciclaje
+Problema: las contribuciones del ciudadano no quedan documentadas.
+Requerimiento: registrar tipo de material, cantidad, unidad, fecha, punto y observación; iniciar con estado Pendiente.
+Necesidad: mantener un historial de entregas para revisión.
+
+RF-10 – Validación de reciclaje
+Problema: los puntos no deben asignarse antes de revisar el registro.
+Requerimiento: permitir que el administrador apruebe o rechace registros pendientes.
+Necesidad: separar las declaraciones del ciudadano de las actividades validadas.
+
+RF-11 – Puntos del ciudadano
+Problema: el usuario no observa reconocimiento por sus acciones aprobadas.
+Requerimiento: calcular 10 puntos por cada kg aprobado y 1 punto por cada unidad aprobada, según la regla actual.
+Necesidad: ofrecer un incentivo de participación comprensible.
+
+RF-12 – Inscripción a campañas
+Problema: las oportunidades de participación comunitaria pueden pasar desapercibidas.
+Requerimiento: mostrar campañas y guardar la inscripción de cada ciudadano sin duplicarla.
+Necesidad: facilitar la participación en actividades ambientales.
+
+RF-13 – Visualización de impacto
+Problema: el ciudadano puede no percibir la continuidad de sus contribuciones.
+Requerimiento: mostrar cantidades aprobadas por material, kg y unidades, y un indicador visual de avance.
+Necesidad: hacer visible el historial de acciones sin afirmar equivalencias científicas no calculadas.
+
+RF-14 – Perfil ciudadano
+Problema: los datos personales y preferencias pueden cambiar.
+Requerimiento: consultar y modificar nombre, correo, celular, ciudad, zona y material de interés.
+Necesidad: mantener el perfil actualizado y relacionarlo correctamente con los registros.
+
+RF-15 – Cambio de contraseña
+Problema: el usuario puede necesitar actualizar sus credenciales.
+Requerimiento: solicitar contraseña actual y nueva contraseña de al menos ocho caracteres.
+Necesidad: permitir mantener actualizada la credencial de la cuenta.
+
+RF-16 – Gestión de campañas
+Problema: la organización necesita publicar y retirar actividades.
+Requerimiento: crear campañas con nombre, fecha, lugar, materiales/temática y descripción; eliminar campañas creadas.
+Necesidad: mantener el calendario de participación.
+
+RF-17 – Gestión de usuarios
+Problema: la organización necesita consultar quién está registrado.
+Requerimiento: mostrar los datos básicos de perfiles ciudadanos.
+Necesidad: conocer el conjunto de participantes del prototipo.
+
+RF-18 – Estadísticas administrativas
+Problema: la organización no puede evaluar la participación si no resume los registros.
+Requerimiento: calcular usuarios, kg aprobados, registros aprobados y pendientes, y cantidades por material.
+Necesidad: observar el comportamiento de participación con datos registrados.
+
+RF-19 – Exportación de reportes
+Problema: la organización puede necesitar analizar la información fuera del sitio.
+Requerimiento: descargar usuarios y registros en formato CSV.
+Necesidad: facilitar el tratamiento básico de la información.
+
+RF-20 – Configuración de organización
+Problema: la plataforma necesita mostrar y conservar datos de la organización responsable.
+Requerimiento: editar nombre, correo de contacto y ciudad.
+Necesidad: mantener la información institucional del prototipo.
+
+RF-21 – Cierre de sesión
+Problema: el usuario necesita terminar su sesión antes de dejar el equipo.
+Requerimiento: eliminar la sesión local y regresar a inicio de sesión.
+Necesidad: evitar que la navegación permanezca asociada al usuario actual en ese navegador.
+
+RF-22 – Búsqueda y filtros
+Problema: encontrar materiales o puntos dentro de las listas puede tomar tiempo.
+Requerimiento: filtrar tarjetas mientras se escribe y filtrar la guía por categoría.
+Necesidad: reducir el esfuerzo de consulta.
+
+4. REGLAS DE NEGOCIO QUE APARECEN EN EL CÓDIGO
+- Solo los registros con estado Aprobado suman puntos y aparecen como material aprobado.
+- La fórmula actual es 10 puntos por kg y 1 punto por unidad.
+- Un registro nuevo se guarda como Pendiente.
+- Los registros pendientes pueden ser aprobados o rechazados por el administrador.
+- No se permite registrar dos inscripciones iguales del mismo correo a la misma campaña.
+- El correo ciudadano debe ser único.
+- La contraseña ciudadana debe tener al menos ocho caracteres y coincidir con su confirmación.
+- La nueva contraseña debe tener al menos ocho caracteres y se solicita la contraseña actual.
+- La clave administrativa de demostración es EcoPoints2026.
+- Los puntos y niveles son incentivos ilustrativos; no equivalen a una medición científica ambiental.
+
+5. DATOS QUE MANEJA EL PROTOTIPO
+
+Ciudadano: id, nombre, correo, celular, ciudad, zona, material de interés, hash de contraseña y fecha de registro.
+Sesión: rol, correo, nombre y, para el administrador, organización.
+Registro de reciclaje: id, correo del ciudadano, material, cantidad, unidad, fecha, punto, nota, estado y fecha de creación; al validarse incorpora fecha de revisión.
+Campaña: id, título, fecha, lugar, descripción, materiales/temática y marca de demostración.
+Inscripción: identificador de campaña, correo del ciudadano y fecha.
+Punto de acopio: id, nombre, zona, ciudad, materiales, horario, dirección y marca de demostración.
+Organización: nombre, correo y ciudad.
+
+6. LÍMITES, RIESGOS Y FUNCIONES NO IMPLEMENTADAS
+- localStorage guarda datos solo en el navegador y origen donde se ejecuta. No sincroniza cuentas entre dispositivos ni comparte registros entre navegadores.
+- La validación de rol ocurre en JavaScript del cliente; no sustituye permisos de servidor.
+- La clave EcoPoints2026 está incluida en el código JavaScript. Cualquier persona que inspeccione los archivos puede conocerla.
+- SHA-256 en el navegador y el respaldo base64 no equivalen a autenticación segura de producción. En particular, base64 es codificación reversible.
+- No existe recuperación de contraseña por correo, verificación de correo, servidor, base de datos remota ni gestión real de sesiones.
+- La pantalla de puntos de acopio utiliza un mapa ilustrativo; no hay integración cartográfica ni geolocalización.
+- Los datos iniciales de campañas y acopios son demostrativos, no lugares ni eventos confirmados.
+- No hay carga de imágenes o evidencias de reciclaje en el formulario actual.
+- Los puntos y la meta de 20 kg son reglas y referencias ilustrativas configuradas en el código.
+- La plataforma no calcula CO2 evitado, árboles equivalentes ni otros indicadores científicos.
+- No existe un sistema de notificaciones push o recordatorios programados.
+- No hay edición de campañas o puntos de acopio; el administrador puede crear y eliminar.
+- No hay herramienta para crear o revocar administradores individuales; el acceso se realiza con una clave fija de demostración.
+
+7. RECOMENDACIONES PARA UNA VERSIÓN REAL
+- Incorporar backend y base de datos central.
+- Implementar autenticación segura en servidor, contraseñas con algoritmo de derivación adecuado y sesiones protegidas.
+- Gestionar roles y permisos del lado del servidor.
+- Verificar correo y habilitar recuperación de contraseña.
+- Validar los puntos de acopio y campañas antes de publicarlos.
+- Definir con la organización reglas transparentes de asignación de puntos.
+- Establecer un procedimiento de validación de registros y evidencias.
+- Proteger los reportes descargables y los datos personales.
+- Incorporar un mapa real solo cuando exista información de ubicación verificada.
+- Definir una metodología documentada antes de mostrar indicadores ambientales equivalentes.
+
+8. CRITERIOS BÁSICOS DE PRUEBA
+1. Abrir la página pública: debe mostrar menú visitante y contenido sin solicitar sesión.
+2. Abrir una URL ciudadana sin sesión: debe redirigir al inicio de sesión.
+3. Registrar un ciudadano con campos requeridos completos: debe crear cuenta e iniciar sesión.
+4. Intentar registrar el mismo correo: debe mostrar un error de correo existente.
+5. Iniciar sesión con contraseña incorrecta: debe mostrar mensaje de error.
+6. Acceder al panel administrador con clave incorrecta: debe mostrar error.
+7. Registrar una actividad ciudadana: debe aparecer como Pendiente en el historial y en administración.
+8. Aprobar esa actividad: debe sumarse al total de puntos del ciudadano.
+9. Inscribirse en una campaña: el botón debe cambiar a Inscrito y no permitir duplicación.
+10. Editar el correo del perfil: los registros e inscripciones deben conservar la relación con el nuevo correo.
+11. Crear una campaña y un punto de acopio: deben aparecer en las listas correspondientes.
+12. Descargar reportes: deben generarse archivos CSV con los registros disponibles.
+13. Cerrar sesión y volver a abrir una página privada: debe solicitar autenticación.
+
+Fin del documento.

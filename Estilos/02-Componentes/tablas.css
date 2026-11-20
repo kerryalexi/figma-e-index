@@ -1,0 +1,46 @@
+/*ESTILO DE TABLAS Y LISTADOS*/
+
+.table-wrap {
+    /*PARAMETROS DEL ELEMENTO*/
+    overflow-x: auto;
+    /*ESTILO DEL BORDE*/
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    /*FONDO Y COLORES*/
+    background: white;
+}
+
+table {
+    /*PARAMETROS DEL ELEMENTO*/
+    width: 100%;
+    /*ESTILO DEL BORDE*/
+    border-collapse: collapse;
+    /*PARAMETROS DEL ELEMENTO*/
+    min-width: 650px;
+}
+
+th,td {
+    /*ESTILO DEL TEXTO*/
+    text-align: left;
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 13px 15px;
+    /*ESTILO DEL BORDE*/
+    border-bottom: 1px solid var(--line);
+    /*ESTILO DEL TEXTO*/
+    font-size: .89rem;
+}
+
+th {
+    /*FONDO Y COLORES*/
+    background: #f3f7f1;
+    color: #506055;
+    /*ESTILO DEL TEXTO*/
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+tr:last-child td {
+    /*ESTILO DEL BORDE*/
+    border-bottom: 0;
+}

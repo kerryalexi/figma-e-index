@@ -1,0 +1,99 @@
+/*BARRA DE NAVEGACION PRINCIPAL Y MENU RESPONSIVE*/
+
+.topbar {
+    /*PARAMETROS DEL ELEMENTO*/
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    /*FONDO Y COLORES*/
+    background: rgba(247,248,245,.94);
+    /*INTERACCION Y EFECTOS*/
+    backdrop-filter: blur(15px);
+    /*ESTILO DEL BORDE*/
+    border-bottom: 1px solid var(--line);
+}
+
+.navwrap {
+    /*PARAMETROS DEL ELEMENTO*/
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.brand {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /*ESTILO DEL TEXTO*/
+    font-family: Manrope,sans-serif;
+    font-size: 1.22rem;
+    font-weight: 800;
+    /*FONDO Y COLORES*/
+    color: var(--forest);
+    /*ESTILO DEL TEXTO*/
+    white-space: nowrap;
+}
+
+.brand img {
+    /*PARAMETROS DEL ELEMENTO*/
+    width: 43px;
+    height: 43px;
+}
+
+.navlinks {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex: 1;
+}
+
+.navlinks a,.navlinks button {
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 10px 12px;
+    /*ESTILO DEL BORDE*/
+    border: 0;
+    /*FONDO Y COLORES*/
+    background: transparent;
+    /*ESTILO DEL BORDE*/
+    border-radius: 11px;
+    /*FONDO Y COLORES*/
+    color: #4d5c52;
+    /*ESTILO DEL TEXTO*/
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.navlinks a:hover,.navlinks a.active {
+    /*FONDO Y COLORES*/
+    background: var(--mist);
+    color: var(--forest);
+}
+
+.nav-actions {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    gap: 9px;
+    align-items: center;
+}
+
+.mobile-toggle {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: none;
+    /*FONDO Y COLORES*/
+    background: transparent;
+    /*ESTILO DEL BORDE*/
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 8px;
+    /*FONDO Y COLORES*/
+    color: var(--forest);
+}
+
+.mobile-nav {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: none;
+}

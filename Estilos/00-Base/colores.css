@@ -1,0 +1,17 @@
+/*COLORES PRINCIPALES DE LA PLATAFORMA*/
+
+:root {
+    /*AJUSTES VISUALES*/
+    --forest: #176B45;
+    --green: #2E9D62;
+    --leaf: #A7D66D;
+    --yellow: #F2C94C;
+    --mist: #E9F3E8;
+    --paper: #F7F8F5;
+    --ink: #26352B;
+    --muted: #68766D;
+    --line: #E1E9E0;
+    --white: #fff;
+    --shadow: 0 16px 40px rgba(26,72,44,.09);
+    --radius: 20px;
+}

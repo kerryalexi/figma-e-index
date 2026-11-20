@@ -1,0 +1,186 @@
+/*ADAPTACION A TABLETAS Y DISPOSITIVOS MOVILES*/
+
+@media (max-width:920px) {
+    .navwrap {
+        /*PARAMETROS DEL ELEMENTO*/
+        gap: 12px;
+    }
+
+    .navlinks {
+        /*PARAMETROS DEL ELEMENTO*/
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        /*FONDO Y COLORES*/
+        background: #f7f8f5;
+        /*PARAMETROS DEL ELEMENTO*/
+        padding: 12px 20px 18px;
+        /*ESTILO DEL BORDE*/
+        border-bottom: 1px solid var(--line);
+        /*PARAMETROS DEL ELEMENTO*/
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navlinks.open {
+        /*PARAMETROS DEL ELEMENTO*/
+        display: flex;
+    }
+
+    .navlinks a {
+        /*PARAMETROS DEL ELEMENTO*/
+        padding: 12px;
+    }
+
+    .mobile-toggle {
+        /*PARAMETROS DEL ELEMENTO*/
+        display: block;
+    }
+
+    .nav-actions .btn {
+        /*PARAMETROS DEL ELEMENTO*/
+        padding: 10px 12px;
+    }
+
+    .hero-grid,.auth-grid {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+        /*PARAMETROS DEL ELEMENTO*/
+        max-width: 650px;
+    }
+
+    .page-layout {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-template-columns: 1fr;
+    }
+
+    .side-card {
+        /*PARAMETROS DEL ELEMENTO*/
+        position: static;
+    }
+
+    .side-links {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    .metric-grid {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width:650px) {
+    .container {
+        /*PARAMETROS DEL ELEMENTO*/
+        width: min(100% - 28px,1160px);
+    }
+
+    .navwrap {
+        /*PARAMETROS DEL ELEMENTO*/
+        min-height: 68px;
+    }
+
+    .brand {
+        /*ESTILO DEL TEXTO*/
+        font-size: 1.05rem;
+    }
+
+    .brand img {
+        /*PARAMETROS DEL ELEMENTO*/
+        width: 37px;
+        height: 37px;
+    }
+
+    .navlinks {
+        /*PARAMETROS DEL ELEMENTO*/
+        top: 68px;
+    }
+
+    .nav-actions .btn {
+        /*ESTILO DEL TEXTO*/
+        font-size: .8rem;
+        /*PARAMETROS DEL ELEMENTO*/
+        padding: 9px;
+    }
+
+    .hero {
+        /*PARAMETROS DEL ELEMENTO*/
+        padding: 42px 0;
+    }
+
+    .hero h1 {
+        /*ESTILO DEL TEXTO*/
+        font-size: 2.55rem;
+    }
+
+    .stats-strip {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        /*PARAMETROS DEL ELEMENTO*/
+        padding: 44px 0;
+    }
+
+    .section-head {
+        /*PARAMETROS DEL ELEMENTO*/
+        display: block;
+    }
+
+    .grid.three,.grid.two,.two-col {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-template-columns: 1fr;
+    }
+
+    .metric-grid {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .form-grid {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-column: auto;
+    }
+
+    .side-links {
+        /*PARAMETROS DEL ELEMENTO*/
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .auth-box,.auth-aside {
+        /*PARAMETROS DEL ELEMENTO*/
+        padding: 22px;
+    }
+
+    .footer-inner {
+        /*PARAMETROS DEL ELEMENTO*/
+        display: block;
+    }
+
+    .footer-links {
+        /*AJUSTES VISUALES*/
+        margin-top: 14px;
+    }
+
+    .page-content {
+        /*AJUSTES VISUALES*/
+        padding-top: 22px;
+    }
+
+    .metric .metric-value {
+        /*ESTILO DEL TEXTO*/
+        font-size: 1.5rem;
+    }
+}

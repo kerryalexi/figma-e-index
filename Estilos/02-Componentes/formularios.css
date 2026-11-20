@@ -1,0 +1,89 @@
+/*ESTILO DE CAMPOS Y FORMULARIOS*/
+
+.form-grid {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.field {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: grid;
+    gap: 6px;
+}
+
+.field.full {
+    /*PARAMETROS DEL ELEMENTO*/
+    grid-column: 1/-1;
+}
+
+.field label {
+    /*ESTILO DEL TEXTO*/
+    font-size: .86rem;
+    font-weight: 700;
+    /*FONDO Y COLORES*/
+    color: #455449;
+}
+
+.field input,.field select,.field textarea {
+    /*PARAMETROS DEL ELEMENTO*/
+    width: 100%;
+    /*ESTILO DEL BORDE*/
+    border: 1px solid #dce5da;
+    /*FONDO Y COLORES*/
+    background: #fff;
+    /*ESTILO DEL BORDE*/
+    border-radius: 11px;
+    /*PARAMETROS DEL ELEMENTO*/
+    padding: 12px 13px;
+    /*ESTILO DEL BORDE*/
+    outline: none;
+    /*FONDO Y COLORES*/
+    color: var(--ink);
+}
+
+.field textarea {
+    /*PARAMETROS DEL ELEMENTO*/
+    min-height: 100px;
+    /*AJUSTES VISUALES*/
+    resize: vertical;
+}
+
+.field input:focus,.field select:focus,.field textarea:focus {
+    /*ESTILO DEL BORDE*/
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(46,157,98,.12);
+}
+
+.help {
+    /*ESTILO DEL TEXTO*/
+    font-size: .78rem;
+    /*FONDO Y COLORES*/
+    color: var(--muted);
+}
+
+.form-actions {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    /*AJUSTES VISUALES*/
+    margin-top: 16px;
+}
+
+.checkline {
+    /*PARAMETROS DEL ELEMENTO*/
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    /*ESTILO DEL TEXTO*/
+    font-size: .84rem;
+    /*FONDO Y COLORES*/
+    color: #58675d;
+}
+
+.checkline input {
+    /*AJUSTES VISUALES*/
+    margin-top: 4px;
+}
